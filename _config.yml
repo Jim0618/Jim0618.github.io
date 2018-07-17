@@ -1,11 +1,14 @@
 # Basic
-title: Vno Jekyll
-subtitle: A blog-orientation theme for Jekyll
-welcome_message: <a href="https://github.com/onevcat/vno-jekyll" target="_blank">Download the theme</a>
-description: Vno Jekyll is a port of my Ghost theme vno.
+title: Jim
+subtitle: "正在学习中的开发者"
+welcome_message: ""
+description: Hello, I am Jim.
 creator: <a href="http://onev.cat">@onevcat</a>
-
-url: "http://vno.onevcat.com"
+# 头像里的标题
+avatarTitle: Jim
+# 头像里的描述
+avatarDesc: Studying developer
+url: "http://Jim0618.github.io"
 
 permalink: /:year/:month/:title/
 
@@ -17,13 +20,14 @@ cover_color: red
 
 # The blog button should not be removed.
 blog_button:
-    title: Blog
-    description: Visit blog
+    title: 博客主页
+    # description: Visit blog
 
 # Navigation buttons in the front page.
 nav:
-    - {title: Projects, description: My Projects, url: 'http://project.onevcat.com'}
-    # - {title: Another Button, description: A button, url: 'http://example.com'}
+    - {title: 所有文章, description: archive, url: '/archive'}   
+    - {title: 标签, description: tags, url: '/tags'}      
+    - {title: 关于我, description: about, url: '/about'} 
 
 # Pagination
 gems: [jekyll-paginate]
@@ -37,11 +41,11 @@ comment:
     
 # Social
 social:
-    weibo: onevcat
-    github: onevcat
-    twitter: onevcat
-    gplus: 107108267983477358170
-    mail: onev@onevcat.com
+    # weibo: onevcat
+    github: Jim0618
+    # twitter: onevcat
+    #gplus: 107108267983477358170
+    mail: 2698279519@qq.com
 
 # Google Analytics
 ga:
