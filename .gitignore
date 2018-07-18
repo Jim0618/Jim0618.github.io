@@ -34,3 +34,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 build.sh
+
+# notes
+jekyll_notes/
+
+# local
+*.lnk
+Tools/

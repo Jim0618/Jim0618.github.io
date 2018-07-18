@@ -41,6 +41,7 @@
   </li>
   {% endif %}
 
+  {% if site.social.rss %}
   <!-- RSS -->
   <li class="navigation__item">
     <a href="/feed.xml" rel="author" title="RSS" target="_blank">
@@ -48,6 +49,7 @@
       <span class="label">RSS</span>
     </a>
   </li>
+  {% endif %}
 
   {% if site.social.mail %}
   <!-- Email -->
