@@ -6,11 +6,11 @@ title: Spring Boot教程笔记--一、Spring Boot入门
 
 ## 1. Spring Boot简介
 
-> 简化Spring应用开发的一个框架；
+>简化Spring应用开发的一个框架；
 >
-> 整个Spring技术栈的一个大整合；
+>整个Spring技术栈的一个大整合；
 >
-> J2EE开发的一站式解决方案；
+>J2EE开发的一站式解决方案；
 
 ## 2.微服务
 
@@ -23,23 +23,20 @@ title: Spring Boot教程笔记--一、Spring Boot入门
 微服务：每一个功能元素最终都是一个可独立替换和独立升级的软件单元。  
 
 1. 学习Spring Boot的基础：  
-
-- Spring框架的使用经验（Spring4）
-- 熟练使用Maven进行项目构建和依赖管理  
-- 熟练使用Eclipse或者IDEA  
-
-1. 学习环境：
-
-- jdk1.8
-- Maven 3.x
-- IDEA2017
-- Spring Boot 1.5.9.RELEASE  
+  * Spring框架的使用经验（Spring4）
+  * 熟练使用Maven进行项目构建和依赖管理  
+  * 熟练使用Eclipse或者IDEA  
+2. 学习环境：
+  * jdk1.8
+  * Maven 3.x
+  * IDEA2017
+  * Spring Boot 1.5.9.RELEASE  
 
 ## 3.快速入手开发
 
 ### 1.IDEA创建Maven项目
 
-![1532068956252]()
+![1532068956252](/assets/images/spring-boot-develop/1532068956252.png)
 
 ### 2.在项目根目录中的pom.xml中写入以下代码（告诉Maven添加什么依赖）
 
@@ -63,7 +60,7 @@ title: Spring Boot教程笔记--一、Spring Boot入门
     </dependencies>
 ```
 
-![1532069222354]()
+![1532069222354](/assets/images/spring-boot-develop/1532069222354.png)
 
 ### 3.在src.main.java中添加包：com.jim.controller
 
@@ -105,7 +102,7 @@ public class HelloWorldMainApplication {
 }
 ```
 
-![1532069406540]()
+![1532069406540](/assets/images/spring-boot-develop/1532069406540.png)
 
 ***确认Tomato 端口没有被占用（在cmd中）：***
 
@@ -117,7 +114,7 @@ public class HelloWorldMainApplication {
 
 ### 4.直接运行HelloWorldMainApplication中的Main函数
 
-![1532069845274]()
+![1532069845274](/assets/images/spring-boot-develop/1532069845274.png)
 
 ## 4.部署（超级简单）
 
@@ -135,13 +132,13 @@ public class HelloWorldMainApplication {
     </build>
 ```
 
-![1532071766467]()
+![1532071766467](/assets/images/spring-boot-develop/1532071766467.png)
 
-### 2.打包![1532071923753](C:\Users\ADMINI~1.DES\AppData\Local\Temp\1532071923753.png)
+### 2.打包![1532071923753](/assets/images/spring-boot-develop/1532071923753.png)
 
 ### 3.查看打包位置
 
-![1532072029278]()
+![1532072029278](/assets/images/spring-boot-develop/1532072029278.png)
 
 ### 4.打开该jar所在文件夹，里面的这个jar就可以用来部署了
 
@@ -149,11 +146,11 @@ public class HelloWorldMainApplication {
 java -jar *.jar # 在部署的服务器上启动jar包，即启动该应用的命令
 ```
 
-![1532072232356]()
+![1532072232356](/assets/images/spring-boot-develop/1532072232356.png)
 
 ***该应用自带Tomato，故不要求服务器一定要装Tomato。***
 
-## 5.Hello World探究
+##  5.Hello World探究
 
 ### 1.POM文件
 
@@ -180,8 +177,8 @@ java -jar *.jar # 在部署的服务器上启动jar包，即启动该应用的�
 
 **spring-boot-starter**-web : 
 
-- spring-boot-starter : spring-boot场景启动器，帮我们导入了web模块正常运行所依赖的组件。
-- web： Spring-boot的一个功能场景。
+* spring-boot-starter : spring-boot场景启动器，帮我们导入了web模块正常运行所依赖的组件。
+* web： Spring-boot的一个功能场景。
 
 **要用什么功能就导入什么样的场景启动器**：***Spring Boot将所有的功能场景都抽取出来，做成一个个的starters（启动器），只需要在项目里面引入这些starters相关场景（譬如：spring-boot-starters-web，导入web启动器场景)，所有依赖都会自己跟过来。***
 
@@ -215,20 +212,20 @@ public class HelloWorldMainApplication {
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @ComponentScan(excludeFilters = {
-		@Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
-		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
+    @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+    @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
 public @interface SpringBootApplication {
 ```
 
-- **@SpringBootConfiguration**  
+* **@SpringBootConfiguration**  
 
-  @SpringBootConfiguration是SpringBoot的配置类，标注在某个类上，表示这是一个Spring Boot的配置类。  
+   @SpringBootConfiguration是SpringBoot的配置类，标注在某个类上，表示这是一个Spring Boot的配置类。  
 
   @Configuration标注在某个类上，表示这是个Spring的配置类（底层）。  
 
   配置类 == 配置文件，配置类也是容器中的一个组件（@Component）。
 
-- **@EnableAutoConfiguration**
+* **@EnableAutoConfiguration**
 
   开启自动配置功能（以前需要我们配置的东西，现在开启这个，Spring Boot就会帮我们自动配置）。
 
@@ -241,22 +238,22 @@ public @interface SpringBootApplication {
   public @interface EnableAutoConfiguration {
   ```
 
-  1. @AutoConfigurationPackage：自动配置包 。  
+   1. @AutoConfigurationPackage：自动配置包 。  
 
-     原理：
+      原理：
 
-     ```java
-     @Import(AutoConfigurationPackages.Registrar.class)
-     public @interface AutoConfigurationPackage {
-     ```
+      ```java
+      @Import(AutoConfigurationPackages.Registrar.class)
+      public @interface AutoConfigurationPackage {
+      ```
 
-     ***@AutoConfigurationPackage利用@Import指定Register给容器中导入了一些组件。***这些组件就是主配置类（@SpringBootApplication标注的类）的所在包及下面所有子包里面的所有组件，@AutoConfigurationPackage都将其扫描到Spring容器中。  
+      ***@AutoConfigurationPackage利用@Import指定Register给容器中导入了一些组件。***这些组件就是主配置类（@SpringBootApplication标注的类）的所在包及下面所有子包里面的所有组件，@AutoConfigurationPackage都将其扫描到Spring容器中。  
 
-     1. @Import(EnableAutoConfigurationImportSelector.class)：组件选择器。
+      2. @Import(EnableAutoConfigurationImportSelector.class)：组件选择器。
 
-        ***将所有需要导入的组件以全类名的方式返回，这些组件会被添加到容器中。***
+         ***将所有需要导入的组件以全类名的方式返回，这些组件会被添加到容器中。***
 
-        ***结果就是会给容器中导入非常多的自动配置类（XXXAutoConfiguration），就是给容器导入这个场景需要的所欲组件，并配置好这些组件。***
+         ***结果就是会给容器中导入非常多的自动配置类（XXXAutoConfiguration），就是给容器导入这个场景需要的所欲组件，并配置好这些组件。***
 
   
 
@@ -266,11 +263,11 @@ public @interface SpringBootApplication {
 
 **注**：
 
-- groupId：是你公司的名称，譬如，com.jimCom
+* groupId：是你公司的名称，譬如，com.jimCom
 
-- artififactId：是项目在你公司里的唯一标识号，譬如，spring-boot-project-01
+* artififactId：是项目在你公司里的唯一标识号，譬如，spring-boot-project-01
 
-- project name：是给人看的项目名字，譬如，spring-boot-hello-world
+* project name：是给人看的项目名字，譬如，spring-boot-hello-world
 
   (*包名一般是grouId+artifactId：com.jimCom.spring-boot-project-01*)
 
@@ -289,10 +286,10 @@ public class HelloCotroller {
 }
 ```
 
-- @ResponseBody + @Controller == @RestController 
-- 使用Spring Initializer快速创建Spring Boot项目（一定要联网）
-  - resources文件夹中的 目录结构：
-    - static：保存所有静态资源，js， css， images；
-    - templates：保存所有的模板页面，默认是jar包方式（里面有嵌入式的Tomato，默认不支持jsp页面，但是可以使用模板引擎：freemarker、thymeleaf）；
-    - application.properties：Spring Boot的配置文件。虽说Spring Boot的所有都是自动配置的，但是自己可以通过这里来改动Spring Boot的默认配置。
-  - ecplise中创建的方式是：File -> New -> Spring Starter Project 或者 File -> new -> Other -> Spring Starter Project。
+* @ResponseBody + @Controller == @RestController 
+* 使用Spring Initializer快速创建Spring Boot项目（一定要联网）
+  * resources文件夹中的 目录结构：
+    * static：保存所有静态资源，js， css， images；
+    * templates：保存所有的模板页面，默认是jar包方式（里面有嵌入式的Tomato，默认不支持jsp页面，但是可以使用模板引擎：freemarker、thymeleaf）；
+    * application.properties：Spring Boot的配置文件。虽说Spring Boot的所有都是自动配置的，但是自己可以通过这里来改动Spring Boot的默认配置。
+  * ecplise中创建的方式是：File -> New -> Spring Starter Project 或者 File -> new -> Other -> Spring Starter Project。
