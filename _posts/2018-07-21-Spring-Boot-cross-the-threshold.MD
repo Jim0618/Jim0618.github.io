@@ -1,3 +1,7 @@
+---
+layout: post
+title: Spring Boot教程笔记--一、Spring Boot入门
+---
 # 一、Spring Boot入门
 
 ## 1. Spring Boot简介
