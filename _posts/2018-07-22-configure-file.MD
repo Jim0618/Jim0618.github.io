@@ -197,7 +197,7 @@ person.dog.age=2
 
 **注：**（解决中文乱码）SpringBoot默认将application.properties用ascii编码，而IDEA用utf-8将application.properties编码，故在IDEA中 File --> settings --> Editor --> File Encoding --> Properties Files(*.properties) , 将文件编码弄成utf-8并打钩。
 
-![1532171968061](/assets/images/spring-boot-develop/Temp\1532171968061.png)
+![1532171968061](/assets/images/spring-boot-develop/Temp/1532171968061.png)
 
 #### 7.用@Value（）注入，从配置文件获取值
 
