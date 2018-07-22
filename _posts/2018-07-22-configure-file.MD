@@ -440,7 +440,7 @@ Spring Boot启动会扫描以下位置的application.properties或application.ym
 
 以上是按照优先级从高到低的顺序进行加载配置，所有位置的文件都会被加载，**互补配置**。
 
-![1532251045420](/assets/images/spring-boot-develop/Temp\1532251045420.png)
+![1532251045420](/assets/images/spring-boot-develop/1532251045420.png)
 
 **通过spring.config.location改变配置文件位置**。项目打包好之后，可以通过命令行参数的形式，启动项目的时候来指定配置文件的新位置，指定的这个配置文件会和默认加载的配置文件共同起作用形成互补配置。
 
