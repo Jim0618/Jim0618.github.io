@@ -32,8 +32,8 @@ key:(空格)value：表示一对键值对（一定要有空格）。
 
 ```yml
 server:
-	port: 8081
-	path: /hello
+  port: 8081
+  path: /hello
 ```
 
 ### 2.值的写法
@@ -52,8 +52,8 @@ server:
 
   ```yml
   friends:
-  	lastName: zhangshan
-  	age: 20
+    lastName: zhangshan
+    age: 20
   ```
 
   行内写法：
@@ -106,7 +106,7 @@ person:
 
    +---- bean
 
-   +---+---- Dog	// 因为Person里面有个Dog对象
+   +---+---- Dog  // 因为Person里面有个Dog对象
 
    +---+---- Person
 
@@ -148,13 +148,13 @@ public class Person {
 
 #### 4. 目录结构：
 
-![1532170206750](C:\Users\ADMINI~1.DES\AppData\Local\Temp\1532170206750.png)
+![1532170206750](/assets/images/spring-boot-develop/1532170206750.png)
 
 #### 5. 测试类
 
 1. 目录结构
 
-   ![1532170349436](C:\Users\ADMINI~1.DES\AppData\Local\Temp\1532170349436.png)
+   ![1532170349436](/assets/images/spring-boot-develop/1532170349436.png)
 
 2. SpringBoot单元测试，可以在测试期间很方便的类似编码一样进行自动注入
 
@@ -197,7 +197,7 @@ person.dog.age=2
 
 **注：**（解决中文乱码）SpringBoot默认将application.properties用ascii编码，而IDEA用utf-8将application.properties编码，故在IDEA中 File --> settings --> Editor --> File Encoding --> Properties Files(*.properties) , 将文件编码弄成utf-8并打钩。
 
-![1532171968061](C:\Users\ADMINI~1.DES\AppData\Local\Temp\1532171968061.png)
+![1532171968061](/assets/images/spring-boot-develop/Temp\1532171968061.png)
 
 #### 7.用@Value（）注入，从配置文件获取值
 
@@ -216,7 +216,7 @@ public class Person {
     private Boolean boss;
 ```
 
-#### 8.@Value()和@ConfigurationProperties()两者获取配置文件的值比较	
+#### 8.@Value()和@ConfigurationProperties()两者获取配置文件的值比较  
 
 |                               | @ConfigurationProperties() | @Value()                     |
 | ----------------------------- | :------------------------- | ---------------------------- |
@@ -260,7 +260,7 @@ public class Person {
 
 #### 9.@PropertySource和@ImportResource
 
-​	1. @ConfigutationProperties()只能将全局配置文件（application.properties或者application.yml）将类进行绑定，而@PropertySource能加载指定的配置文件。
+​ 1. @ConfigutationProperties()只能将全局配置文件（application.properties或者application.yml）将类进行绑定，而@PropertySource能加载指定的配置文件。
 
 ```java
 // /src/main/java/com/jim/bean/Person.java
@@ -270,7 +270,7 @@ public class Person {
 public class Person {
 ```
 
-​	配置文件在resources里：person.propeties。
+​ 配置文件在resources里：person.propeties。
 
 ```yml
 # /src/main/resources/person.properties
@@ -284,7 +284,7 @@ person.dog.name=小狗
 person.dog.age=2
 ```
 
-​	2. @ImportResource()
+​ 2. @ImportResource()
 
 ```java
 // /src/main/java/com/jim/HelloMain.java
@@ -293,7 +293,7 @@ person.dog.age=2
 public class HelloMain {
 ```
 
-​	beans.xml是我们自定义的一个Spring配置文件，放在resources下，我们想让它导入进来并生效，得在**一个配置类**上标注@ImportResource(locations = {"classpath:beans.xml"})，上述例子是标注在主程序（主配置类）上。
+​ beans.xml是我们自定义的一个Spring配置文件，放在resources下，我们想让它导入进来并生效，得在**一个配置类**上标注@ImportResource(locations = {"classpath:beans.xml"})，上述例子是标注在主程序（主配置类）上。
 
  3. SpringBoot推荐给容器添加组件的方式是采用全注解，即配置类==Spring自定义配置文件，使用@Bean给容器中添加组件。
 
@@ -324,7 +324,7 @@ public class HelloMain {
 
     * **将一个组件添加到Sping中，譬如，我有个组件service下的HelloService组件，那么，我就要在我的MyAppConfig配置类里写上一个方法，这个方法要有@Bean标注，因为这个标注能将该方法的返回值添加到Spring容器中，这样，我只要在该方法中return new HelloService();就好了。**
 
-![1532195706379](C:\Users\ADMINI~1\AppData\Local\Temp\1532195706379.png)
+![1532195706379](/assets/images/spring-boot-develop/1532195706379.png)
 
 ## 4. 配置文件占位符
 
@@ -358,7 +358,7 @@ Profile是Spring对不同环境提供不同配置功能的支持，比如说我�
 
 譬如，我配置文件有三份：
 
-![1532248133899](C:\Users\ADMINI~1\AppData\Local\Temp\1532248133899.png)
+![1532248133899](/assets/images/spring-boot-develop/1532248133899.png)
 
 application-dev.properties是dev环境的配置文件，application-prod.properties是prod环境的配置文件。
 
@@ -411,21 +411,21 @@ spring.profiles.active=dev
 --spring.profiles.active=dev  # 指定用dev环境
 ```
 
-![1532249242826](C:\Users\ADMINI~1\AppData\Local\Temp\1532249242826.png)
+![1532249242826](/assets/images/spring-boot-develop/1532249242826.png)
 
 **如果已经打包了，怎么指定环境？**
 
 在jar包里用命令行: java -jar spring-boot-02-config-0.01-SNAPSHOT.jar --spring.profiles.active=dev指定。
 
-![1532249678070](C:\Users\ADMINI~1\AppData\Local\Temp\1532249678070.png)
+![1532249678070](/assets/images/spring-boot-develop/1532249678070.png)
 
 #### 3. jvm参数
 
 -DSpring.profiles.active=dev
 
-![1532249776262](C:\Users\ADMINI~1\AppData\Local\Temp\1532249776262.png)
+![1532249776262](/assets/images/spring-boot-develop/1532249776262.png)
 
-	#### 命令行参数和jvm参数指定环境的优先级比主配置文件高，就是说主配置文件的spring.profiles.active激活dev，但是命令行参数激活prod环境，那么最终是系统运行在prod环境下的。
+  #### 命令行参数和jvm参数指定环境的优先级比主配置文件高，就是说主配置文件的spring.profiles.active激活dev，但是命令行参数激活prod环境，那么最终是系统运行在prod环境下的。
 
 ## 6. 配置文件加载位置
 
@@ -433,17 +433,15 @@ Spring Boot启动会扫描以下位置的application.properties或application.ym
 
 ```shell
 - file:./config/ # 文件路径下的config文件夹下
-- file:./		 # 文件路径下的
+- file:./    # 文件路径下的
 - classpath:/config/ # 类路径下的config文件夹下
-- classpath:/		# 类路径下的
+- classpath:/   # 类路径下的
 ```
 
 以上是按照优先级从高到低的顺序进行加载配置，所有位置的文件都会被加载，**互补配置**。
 
-![1532251045420](C:\Users\ADMINI~1\AppData\Local\Temp\1532251045420.png)
+![1532251045420](/assets/images/spring-boot-develop/Temp\1532251045420.png)
 
 **通过spring.config.location改变配置文件位置**。项目打包好之后，可以通过命令行参数的形式，启动项目的时候来指定配置文件的新位置，指定的这个配置文件会和默认加载的配置文件共同起作用形成互补配置。
 
-![1532251517801](C:\Users\ADMINI~1\AppData\Local\Temp\1532251517801.png)
-
---spring.config.location=G:/application.properties, 指定新的配置文件位置是G盘下的application.properties。*如果G:\application.properties的话，\a是转义字符，所以得改成G:/application.properties。*
+![1532251517801](/assets/images/spring-boot-develop/1532251517801.png)
