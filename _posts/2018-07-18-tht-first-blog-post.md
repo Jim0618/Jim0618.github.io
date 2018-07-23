@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 这是我的blog
+title: 欢迎来到我的blog
 ---
 
 * ### 写blog的初衷
