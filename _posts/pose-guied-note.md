@@ -4,7 +4,7 @@
 
 有两个阶段，对于第一阶段，提出并分析几个几个模型以及变体，第二阶段，使用附加条件的深度卷积对抗生成网络（DCGAN）的变体来填充更多外观细节。 PG2的总体框架如图所示 ：
 
-![1532162027739](https://raw.githubusercontent.com/Jim0618/Jim0618.github.io/master/assets/images/pose-guided-person-image-generation-temp/1532315270307.png)
+![1532162027739](/assets/images/pose-guided-person-image-generation-temp/1532315270307.png)
 
 ## 1. 步骤一，姿势集成
 
