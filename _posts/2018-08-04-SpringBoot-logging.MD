@@ -156,3 +156,31 @@ logging.pattern.file=%d{yyyy-MM-dd} === [%thread] ====%-5level === %logger{50} =
 ```
 
 ![2018-08-03_140534.png](/assets/images/spring-boot-develop/2018-08-03_140534.png)
+
+### 2.指定配置
+
+在类路径下放上每个日志框架自己的配置文件即可，SpringBoot就自动忽略默认配置而加载自定义的配置文件：
+
+![2018-08-08_210011](/assets/images/spring-boot-develop/2018-08-08_210011.png)
+
+loback.xml是自定义的日志框架的配置文件，直接放在类路径下就会自动生效。
+
+![2018-08-08_205513](/assets/images/spring-boot-develop/2018-08-08_205513.png)
+
+如果我们的日志框架是`Logbakc`,那么它自定义的配置文件名应为`logback-spring.xml`，`logback-spring.groovy`, `logback.xml`或者`logback.groovy`等，其余的类似。
+
+SpringBoot推荐带有`-spring`的配置文件，譬如，推荐使用`logback-spring.xml`而不是`logback.xml`。如果使用`logback.xml`,那就会直接被日志框架识别了，而使用`logback-spring.xml`，日志框架不直接加载日志的配置项，而由SpringBoot解析日志配置，这样，我们能在该配置文件使用一些SpringBoot的高级springProfile功能：
+
+```xml
+<springProfile name="staging">
+	<!--这个配置可以指定某段配置只在某个环境生效-->
+</springProfile>
+```
+
+而如果不加`-spring`而直接使用`<springProfile></springProfile>`的话就会报错。
+
+## 5.切换日志框架
+
+譬如要将现在的日志框架切换为`log4j2`，只需要在原先的的pom.xml排除掉`logging`的`starter`,换为`log4j2`的`starter`即可。
+
+同理，切换日志框架只需在`pom.xml`里更换依赖即可，注意如果原先有自定义的配置文件，需将它移除，再写切换后的日志框架对应的配置文件。
