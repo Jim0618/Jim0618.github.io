@@ -41,3 +41,6 @@ jekyll_notes/
 # local
 *.lnk
 Tools/
+for_test
+!!REMIND
+temp.py
