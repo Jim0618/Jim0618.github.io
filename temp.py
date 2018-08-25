@@ -7,6 +7,8 @@ repo = Repo(git_path)
 commit_words = 'a'
 
 index = repo.index
+index.add(['.gitignore'])
+index.commit('commit .gitignore')
 index.add('*')
 index.commit(commit_words)
 repo.remote().push()
