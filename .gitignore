@@ -45,6 +45,6 @@ for_test
 !!REMIND
 temp*
 cmd*
-cmd_sec_operate_script.py
+/cmd_sec_operate_script.py
 cmd_cmds
 temp.py
