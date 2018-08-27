@@ -52,7 +52,7 @@ class PopUpBox:
 
 if len(sys.argv) >= 2:
     cmd = ' '.join(sys.argv[1:]).strip()
-    if 'commit -m ""' in cmd:
+    if 'commit -m' in cmd:
         PopUpBox().start()
         cmd  = 'git commit -m "%s"'%(PopUpBox.message)
     print(cmd)
