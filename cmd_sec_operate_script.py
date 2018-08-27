@@ -56,3 +56,4 @@ if len(sys.argv) >= 2:
         PopUpBox().start()
         cmd  = 'git commit -m "%s"'%(PopUpBox.message)
     print(cmd)
+    #
