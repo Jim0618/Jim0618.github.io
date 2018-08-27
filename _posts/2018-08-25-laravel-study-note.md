@@ -200,7 +200,7 @@ return view('home/index', [
 ```php
 // 模板中获取变量
 // views/home/index.blade.php
-\{\{ $name \}\} \{\{ $age \}\}
+\{{ $name \}} \{{ $age \}}
 ```
 
 ### 5. 模型
@@ -701,7 +701,7 @@ public function orm() {
 
 ```php
 // resources/views/layouts.blade.php
-\{\{--@section,展示片段内容--\}\}
+\{{--@section,展示片段内容--\}}
 @section('header')
     头部
 @show
@@ -710,7 +710,7 @@ public function orm() {
     侧边栏
 @show
 
-\{\{--@yield，展示字符串内容--\}\}
+\{{--@yield，展示字符串内容--\}}
 @yield('content', '主要内容')
 ```
 
@@ -718,21 +718,21 @@ public function orm() {
 
 ```php
 // resources/views/student/child.blade.php
-\{\{--1.继承哪个模板--\}\}
+\{{--1.继承哪个模板--\}}
 @extends('layouts')
 
-\{\{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}\}
+\{{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}}
 @section('header')
     @parent
     header
 @stop
-\{\{--或者--\}\}
-\{\{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}\}
+\{{--或者--\}}
+\{{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}}
 @section('sidebar')
     sidebar
 @stop
 
-\{\{--3.替换父模板中@yield的content内容--\}\}
+\{{--3.替换父模板中@yield的content内容--\}}
 @section('content')
     content
 @stop
@@ -760,29 +760,29 @@ class StudentController
 ### 2.基础语法：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.模板中输出PHP变量，该变量由控制器传入--\}\}
-\{\{ $name \}\}
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.模板中输出PHP变量，该变量由控制器传入--\}}
+\{{ $name \}}
 
-\{\{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}\}
-\{\{ time() \}\}
-\{\{ date('Y-m-d H:i:s', time()) \}\}
-\{\{--判断$arr数组中是否有$name,有返回true，没有返回false--\}\}
-\{\{ in_array($name, $arr) ? 'ture': 'false' \}\}
-\{\{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}\}
-\{\{ isset($name) ? $name: 'default' \}\}
-\{\{--或者--\}\}
-\{\{ $name or 'default' \}\}
+\{{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}}
+\{{ time() \}}
+\{{ date('Y-m-d H:i:s', time()) \}}
+\{{--判断$arr数组中是否有$name,有返回true，没有返回false--\}}
+\{{ in_array($name, $arr) ? 'ture': 'false' \}}
+\{{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}}
+\{{ isset($name) ? $name: 'default' \}}
+\{{--或者--\}}
+\{{ $name or 'default' \}}
 
-\{\{--3.原样输出，视图渲染时输出\{\{ $name \}\}--\}\}
-@\{\{ $name \}\}
+\{{--3.原样输出，视图渲染时输出\{{ $name \}}--\}}
+@\{{ $name \}}
 
-\{\{--4.模板注释--\}\}
-\{\{--xxxx--\}\}
+\{{--4.模板注释--\}}
+\{{--xxxx--\}}
 
-\{\{--5.子模板中引入子视图--\}\}
+\{{--5.子模板中引入子视图--\}}
 @include('student.common')
-\{\{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}\}
+\{{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}}
 @include('student.common', ['msg' => 'error'])
 ```
 
@@ -805,17 +805,17 @@ class StudentController
 子视图：
 
 ```php
-\{\{--resources/views/student/common.blade.php--\}\}
-\{\{--$msg是个占位符，等着别处传过来值给它赋值--\}\}
-\{\{ $msg \}\}
+\{{--resources/views/student/common.blade.php--\}}
+\{{--$msg是个占位符，等着别处传过来值给它赋值--\}}
+\{{ $msg \}}
 ```
 
 ### 3.模板中流程控制
 
 ```php
-\{\{--resources/vies/student/child.blade.php--\}\}
+\{{--resources/vies/student/child.blade.php--\}}
 
-\{\{--if--\}\}
+\{{--if--\}}
 @if ($name == 'Jim')
     Jim
 @elseif($name == 'a')
@@ -824,25 +824,25 @@ class StudentController
     b
 @endif
 
-\{\{--unless,相当于if的取反--\}\}
+\{{--unless,相当于if的取反--\}}
 @unless( $name == 'Jim' )
     output Jim
 @endunless
 
-\{\{--for--\}\}
+\{{--for--\}}
 @for ($i=0; $i<2; $i++)
-    <p>\{\{ $i \}\}</p>
+    <p>\{{ $i \}}</p>
 @endfor
 
-\{\{--foreach,遍历对象列表或者数组--\}\}
-@foreach($students as $student) \{\{--该$student对象列表由控制器传入--\}\}
-    <p>\{\{ $student->name \}\}</p> \{\{--返回$student对象的name属性--\}\}
+\{{--foreach,遍历对象列表或者数组--\}}
+@foreach($students as $student) \{{--该$student对象列表由控制器传入--\}}
+    <p>\{{ $student->name \}}</p> \{{--返回$student对象的name属性--\}}
 @endforeach
 
-\{\{--forelse--\}\}
+\{{--forelse--\}}
 @forelse($students as $student)
-    <p>\{\{ $student->name \}\}</p>
-@empty\{\{--如果对象列表为空--\}\}
+    <p>\{{ $student->name \}}</p>
+@empty\{{--如果对象列表为空--\}}
     <p>null</p>
 @endforelse
 ```
@@ -881,13 +881,13 @@ Route::any('urlTest', ['as' => 'urlAlias', 'uses' => 'StudentController@urlTest'
 模板中生成url：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.指定的路由名字--\}\}
-<a href="\{\{ url('urlTest') \}\}">This is url.</a>
-\{\{--2.控制器+方法名--\}\}
-<a href="\{\{ action('StudentController@urlTest') \}\}">This is url.</a>
-\{\{--3.路由的别名--\}\}
-<a href="\{\{ route('urlAlias') \}\}">This is url.</a>
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.指定的路由名字--\}}
+<a href="\{{ url('urlTest') \}}">This is url.</a>
+\{{--2.控制器+方法名--\}}
+<a href="\{{ action('StudentController@urlTest') \}}">This is url.</a>
+\{{--3.路由的别名--\}}
+<a href="\{{ route('urlAlias') \}}">This is url.</a>
 ```
 
 # 二、laravel表单
@@ -1308,10 +1308,10 @@ class Activity
 
 ## 5.表单案例笔记
 
-1.静态资源路径：`\{\{ asset() \}\}`
+1.静态资源路径：`\{{ asset() \}}`
 
 ```php
-    <link href="\{\{ asset('static/css/bootstrap.min.css') \}\}" rel="stylesheet">
+    <link href="\{{ asset('static/css/bootstrap.min.css') \}}" rel="stylesheet">
 ```
 
 这个路径是相对于public文件夹下的，也就是文件位置：![2018-08-07_134524](/assets/images/laravel-develop-study/2018-08-07_134524.png)
@@ -1342,13 +1342,13 @@ class StudentController extends Controller
 }
 ```
 
-	在需要用到分页的视图里，直接` \{\{ $students->render() \}\}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
+	在需要用到分页的视图里，直接` \{{ $students->render() \}}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
 
 ```php
 <!--student.index视图的分页内容-->
 	<!--分页-->
     <div class="pull-right">
-        \{\{ $students->render() \}\}
+        \{{ $students->render() \}}
     </div>
 ```
 
@@ -1356,8 +1356,8 @@ class StudentController extends Controller
 
 ```php
 <ul class="nav nav-pills nav-stacked">
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}\}"><a href="\{\{ url('student/index') \}\}">学生列表</a></li>
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}\}"><a href="\{\{ url('student/create') \}\}">新增学生</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}}"><a href="\{{ url('student/index') \}}">学生列表</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}}"><a href="\{{ url('student/create') \}}">新增学生</a></li>
 </ul>
 ```
 
@@ -1368,7 +1368,7 @@ class StudentController extends Controller
 * 提交到`save()`:
 
 ```php
-<form action="\{\{ url('student/save') \}\}" method="POST"> 
+<form action="\{{ url('student/save') \}}" method="POST"> 
     <!-- 1.设置action路径为'student/save',即提交到student/save -->
 
     <label for="inputName" >姓名：</label>
@@ -1480,7 +1480,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>成功!!</strong>\{\{ Session::get('success') \}\}！
+    <strong>成功!!</strong>\{{ Session::get('success') \}}！
 </div>
 @endif
 @if (Session::has('error'))
@@ -1489,7 +1489,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>失败!!</strong>\{\{ Session::get('error') \}\}！
+    <strong>失败!!</strong>\{{ Session::get('error') \}}！
 </div>
 @endif
 ```
@@ -1525,14 +1525,14 @@ Route::group(['middleware' => ['web']], function () {
 });
 ```
 
-中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{\{ csrf_field() \}\}`。
+中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{{ csrf_field() \}}`。
 
 ```php
 <!--create.blade.php-->
 @section('content')
-<form action="\{\{ url('student/save') \}\}" method="POST">
+<form action="\{{ url('student/save') \}}" method="POST">
 
-    \{\{ csrf_field() \}\} <!--防止xxs攻击-->
+    \{{ csrf_field() \}} <!--防止xxs攻击-->
 
     <label for="inputName" >姓名：</label>
         <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
@@ -1613,7 +1613,7 @@ $this->validate($request, [
     <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error) // 将所有的错误都输出
-            <li>\{\{ $error \}\}</li>
+            <li>\{{ $error \}}</li>
             @endforeach
         </ul>
     </div>
@@ -1627,8 +1627,8 @@ $this->validate($request, [
 
     @include('common.validator') <!--需要输出验证信息的地方-->
 
-    <form action="\{\{ url('student/save') \}\}" method="POST">
-        \{\{ csrf_field() \}\}
+    <form action="\{{ url('student/save') \}}" method="POST">
+        \{{ csrf_field() \}}
         <label for="inputName" >姓名：</label>
             <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
 
@@ -1676,7 +1676,7 @@ public function create(Request $request){
 }
 ```
 
-在视图中调用指定的错误信息：`\{\{ $errors->first('Student.name') \}\}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
+在视图中调用指定的错误信息：`\{{ $errors->first('Student.name') \}}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
 
 7. 数据保持
 
@@ -1684,10 +1684,10 @@ public function create(Request $request){
 
 ![2018-08-07_222555](/assets/images/laravel-develop-study/2018-08-07_222555.png)
 
-`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{\{ old('Student')['name'] \}\}"`即可：
+`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{{ old('Student')['name'] \}}"`即可：
 
 ```php
-<input type="text" value="\{\{ old('Student')['name'] \}\}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
+<input type="text" value="\{{ old('Student')['name'] \}}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
 ```
 
 这样子，在提交表单而发生错误后，重定向到原先的表单填写页面时，它会自动补全在`input`之前填过的信息：![2018-08-07_223016](/assets/images/laravel-develop-study/2018-08-07_223016.png)
@@ -1767,10 +1767,10 @@ public function create(){
 ```php
 @foreach($students as $student)
     <tr>
-        <td>\{\{ $student->id \}\}</td>
-        <td>\{\{ $student->name \}\}</td>
-        <td>\{\{ $student->age \}\}</td>
-        <td>\{\{ $student->sex($student->sex) \}\}</td>
+        <td>\{{ $student->id \}}</td>
+        <td>\{{ $student->name \}}</td>
+        <td>\{{ $student->age \}}</td>
+        <td>\{{ $student->sex($student->sex) \}}</td>
     </tr> <!--储存到model中的性别是个数字，$student->sex是个数字，$student->sex()才将这个数字转化对应性别为中文汉字-->
 @endforeach
 ```
@@ -1778,7 +1778,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline"> <!--sex()返回一个数组，$ind是10,20,30,$val是未知，男，女-->
-        <input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+        <input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
     </label> <!--最后提交到数据库是，如果是未知，那Student[sex]=10，男：Student[sex]=10等-->
 @endforeach
 ```
@@ -1805,7 +1805,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
 	</label>
 @endforeach
 ```
@@ -1815,14 +1815,14 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}"
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
->&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}"
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
+>&nbsp;\{{ $val \}}
 	</label>
 @endforeach	
 ```
 
-`\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
+`\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
 
 然而，如果控制器仅仅：
 
@@ -1846,7 +1846,7 @@ return view('student.create', [
 这样，在视图：
 
 ```php
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
 ```
 
 先判断`$student->sex`有没有被设置再来做其他事情。
@@ -1854,7 +1854,7 @@ return view('student.create', [
 10. 视图中url传值：
 
 ```php
-\{\{ url('student/update', ['id' => $student->id]) \}\}
+\{{ url('student/update', ['id' => $student->id]) \}}
 ```
 
 # 三、Laravel简单操作技巧
@@ -2243,12 +2243,12 @@ return [
    ```php
    // resources/views/student/upload.blade.php
    <div class="panel-body">
-   	\{\{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}\}
+   	\{{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}}
    	<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
-   		\{\{ csrf_field() \}\}
+   		\{{ csrf_field() \}}
        	<div>
                 <label for="file" class="col-md-4 control-label">请选择文件</label>
-                <div class="col-md-6">		\{\{--name值是source--\}\}
+                <div class="col-md-6">		\{{--name值是source--\}}
                    <input id="file" type="file" class="form-control" name="source" required>
                 </div>
             </div>
@@ -2366,7 +2366,7 @@ class StudentController extends Controller
     <title>标题</title>
 </head>
 <body> <!--$name由控制器注入进来-->
-<h1>Hello \{\{ $name \}\}</h1>
+<h1>Hello \{{ $name \}}</h1>
 </body>
 </html>
 ```
@@ -2943,7 +2943,7 @@ return view('home/index', [
 ```php
 // 模板中获取变量
 // views/home/index.blade.php
-\{\{ $name \}\} \{\{ $age \}\}
+\{{ $name \}} \{{ $age \}}
 ```
 
 ### 5. 模型
@@ -3444,7 +3444,7 @@ public function orm() {
 
 ```php
 // resources/views/layouts.blade.php
-\{\{--@section,展示片段内容--\}\}
+\{{--@section,展示片段内容--\}}
 @section('header')
     头部
 @show
@@ -3453,7 +3453,7 @@ public function orm() {
     侧边栏
 @show
 
-\{\{--@yield，展示字符串内容--\}\}
+\{{--@yield，展示字符串内容--\}}
 @yield('content', '主要内容')
 ```
 
@@ -3461,21 +3461,21 @@ public function orm() {
 
 ```php
 // resources/views/student/child.blade.php
-\{\{--1.继承哪个模板--\}\}
+\{{--1.继承哪个模板--\}}
 @extends('layouts')
 
-\{\{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}\}
+\{{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}}
 @section('header')
     @parent
     header
 @stop
-\{\{--或者--\}\}
-\{\{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}\}
+\{{--或者--\}}
+\{{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}}
 @section('sidebar')
     sidebar
 @stop
 
-\{\{--3.替换父模板中@yield的content内容--\}\}
+\{{--3.替换父模板中@yield的content内容--\}}
 @section('content')
     content
 @stop
@@ -3503,29 +3503,29 @@ class StudentController
 ### 2.基础语法：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.模板中输出PHP变量，该变量由控制器传入--\}\}
-\{\{ $name \}\}
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.模板中输出PHP变量，该变量由控制器传入--\}}
+\{{ $name \}}
 
-\{\{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}\}
-\{\{ time() \}\}
-\{\{ date('Y-m-d H:i:s', time()) \}\}
-\{\{--判断$arr数组中是否有$name,有返回true，没有返回false--\}\}
-\{\{ in_array($name, $arr) ? 'ture': 'false' \}\}
-\{\{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}\}
-\{\{ isset($name) ? $name: 'default' \}\}
-\{\{--或者--\}\}
-\{\{ $name or 'default' \}\}
+\{{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}}
+\{{ time() \}}
+\{{ date('Y-m-d H:i:s', time()) \}}
+\{{--判断$arr数组中是否有$name,有返回true，没有返回false--\}}
+\{{ in_array($name, $arr) ? 'ture': 'false' \}}
+\{{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}}
+\{{ isset($name) ? $name: 'default' \}}
+\{{--或者--\}}
+\{{ $name or 'default' \}}
 
-\{\{--3.原样输出，视图渲染时输出\{\{ $name \}\}--\}\}
-@\{\{ $name \}\}
+\{{--3.原样输出，视图渲染时输出\{{ $name \}}--\}}
+@\{{ $name \}}
 
-\{\{--4.模板注释--\}\}
-\{\{--xxxx--\}\}
+\{{--4.模板注释--\}}
+\{{--xxxx--\}}
 
-\{\{--5.子模板中引入子视图--\}\}
+\{{--5.子模板中引入子视图--\}}
 @include('student.common')
-\{\{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}\}
+\{{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}}
 @include('student.common', ['msg' => 'error'])
 ```
 
@@ -3548,17 +3548,17 @@ class StudentController
 子视图：
 
 ```php
-\{\{--resources/views/student/common.blade.php--\}\}
-\{\{--$msg是个占位符，等着别处传过来值给它赋值--\}\}
-\{\{ $msg \}\}
+\{{--resources/views/student/common.blade.php--\}}
+\{{--$msg是个占位符，等着别处传过来值给它赋值--\}}
+\{{ $msg \}}
 ```
 
 ### 3.模板中流程控制
 
 ```php
-\{\{--resources/vies/student/child.blade.php--\}\}
+\{{--resources/vies/student/child.blade.php--\}}
 
-\{\{--if--\}\}
+\{{--if--\}}
 @if ($name == 'Jim')
     Jim
 @elseif($name == 'a')
@@ -3567,25 +3567,25 @@ class StudentController
     b
 @endif
 
-\{\{--unless,相当于if的取反--\}\}
+\{{--unless,相当于if的取反--\}}
 @unless( $name == 'Jim' )
     output Jim
 @endunless
 
-\{\{--for--\}\}
+\{{--for--\}}
 @for ($i=0; $i<2; $i++)
-    <p>\{\{ $i \}\}</p>
+    <p>\{{ $i \}}</p>
 @endfor
 
-\{\{--foreach,遍历对象列表或者数组--\}\}
-@foreach($students as $student) \{\{--该$student对象列表由控制器传入--\}\}
-    <p>\{\{ $student->name \}\}</p> \{\{--返回$student对象的name属性--\}\}
+\{{--foreach,遍历对象列表或者数组--\}}
+@foreach($students as $student) \{{--该$student对象列表由控制器传入--\}}
+    <p>\{{ $student->name \}}</p> \{{--返回$student对象的name属性--\}}
 @endforeach
 
-\{\{--forelse--\}\}
+\{{--forelse--\}}
 @forelse($students as $student)
-    <p>\{\{ $student->name \}\}</p>
-@empty\{\{--如果对象列表为空--\}\}
+    <p>\{{ $student->name \}}</p>
+@empty\{{--如果对象列表为空--\}}
     <p>null</p>
 @endforelse
 ```
@@ -3624,13 +3624,13 @@ Route::any('urlTest', ['as' => 'urlAlias', 'uses' => 'StudentController@urlTest'
 模板中生成url：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.指定的路由名字--\}\}
-<a href="\{\{ url('urlTest') \}\}">This is url.</a>
-\{\{--2.控制器+方法名--\}\}
-<a href="\{\{ action('StudentController@urlTest') \}\}">This is url.</a>
-\{\{--3.路由的别名--\}\}
-<a href="\{\{ route('urlAlias') \}\}">This is url.</a>
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.指定的路由名字--\}}
+<a href="\{{ url('urlTest') \}}">This is url.</a>
+\{{--2.控制器+方法名--\}}
+<a href="\{{ action('StudentController@urlTest') \}}">This is url.</a>
+\{{--3.路由的别名--\}}
+<a href="\{{ route('urlAlias') \}}">This is url.</a>
 ```
 
 # 二、laravel表单
@@ -4051,10 +4051,10 @@ class Activity
 
 ## 5.表单案例笔记
 
-1.静态资源路径：`\{\{ asset() \}\}`
+1.静态资源路径：`\{{ asset() \}}`
 
 ```php
-    <link href="\{\{ asset('static/css/bootstrap.min.css') \}\}" rel="stylesheet">
+    <link href="\{{ asset('static/css/bootstrap.min.css') \}}" rel="stylesheet">
 ```
 
 这个路径是相对于public文件夹下的，也就是文件位置：![2018-08-07_134524](/assets/images/laravel-develop-study/2018-08-07_134524.png)
@@ -4085,13 +4085,13 @@ class StudentController extends Controller
 }
 ```
 
-	在需要用到分页的视图里，直接` \{\{ $students->render() \}\}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
+	在需要用到分页的视图里，直接` \{{ $students->render() \}}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
 
 ```php
 <!--student.index视图的分页内容-->
 	<!--分页-->
     <div class="pull-right">
-        \{\{ $students->render() \}\}
+        \{{ $students->render() \}}
     </div>
 ```
 
@@ -4099,8 +4099,8 @@ class StudentController extends Controller
 
 ```php
 <ul class="nav nav-pills nav-stacked">
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}\}"><a href="\{\{ url('student/index') \}\}">学生列表</a></li>
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}\}"><a href="\{\{ url('student/create') \}\}">新增学生</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}}"><a href="\{{ url('student/index') \}}">学生列表</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}}"><a href="\{{ url('student/create') \}}">新增学生</a></li>
 </ul>
 ```
 
@@ -4111,7 +4111,7 @@ class StudentController extends Controller
 * 提交到`save()`:
 
 ```php
-<form action="\{\{ url('student/save') \}\}" method="POST"> 
+<form action="\{{ url('student/save') \}}" method="POST"> 
     <!-- 1.设置action路径为'student/save',即提交到student/save -->
 
     <label for="inputName" >姓名：</label>
@@ -4223,7 +4223,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>成功!!</strong>\{\{ Session::get('success') \}\}！
+    <strong>成功!!</strong>\{{ Session::get('success') \}}！
 </div>
 @endif
 @if (Session::has('error'))
@@ -4232,7 +4232,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>失败!!</strong>\{\{ Session::get('error') \}\}！
+    <strong>失败!!</strong>\{{ Session::get('error') \}}！
 </div>
 @endif
 ```
@@ -4268,14 +4268,14 @@ Route::group(['middleware' => ['web']], function () {
 });
 ```
 
-中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{\{ csrf_field() \}\}`。
+中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{{ csrf_field() \}}`。
 
 ```php
 <!--create.blade.php-->
 @section('content')
-<form action="\{\{ url('student/save') \}\}" method="POST">
+<form action="\{{ url('student/save') \}}" method="POST">
 
-    \{\{ csrf_field() \}\} <!--防止xxs攻击-->
+    \{{ csrf_field() \}} <!--防止xxs攻击-->
 
     <label for="inputName" >姓名：</label>
         <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
@@ -4356,7 +4356,7 @@ $this->validate($request, [
     <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error) // 将所有的错误都输出
-            <li>\{\{ $error \}\}</li>
+            <li>\{{ $error \}}</li>
             @endforeach
         </ul>
     </div>
@@ -4370,8 +4370,8 @@ $this->validate($request, [
 
     @include('common.validator') <!--需要输出验证信息的地方-->
 
-    <form action="\{\{ url('student/save') \}\}" method="POST">
-        \{\{ csrf_field() \}\}
+    <form action="\{{ url('student/save') \}}" method="POST">
+        \{{ csrf_field() \}}
         <label for="inputName" >姓名：</label>
             <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
 
@@ -4419,7 +4419,7 @@ public function create(Request $request){
 }
 ```
 
-在视图中调用指定的错误信息：`\{\{ $errors->first('Student.name') \}\}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
+在视图中调用指定的错误信息：`\{{ $errors->first('Student.name') \}}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
 
 7. 数据保持
 
@@ -4427,10 +4427,10 @@ public function create(Request $request){
 
 ![2018-08-07_222555](/assets/images/laravel-develop-study/2018-08-07_222555.png)
 
-`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{\{ old('Student')['name'] \}\}"`即可：
+`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{{ old('Student')['name'] \}}"`即可：
 
 ```php
-<input type="text" value="\{\{ old('Student')['name'] \}\}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
+<input type="text" value="\{{ old('Student')['name'] \}}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
 ```
 
 这样子，在提交表单而发生错误后，重定向到原先的表单填写页面时，它会自动补全在`input`之前填过的信息：![2018-08-07_223016](/assets/images/laravel-develop-study/2018-08-07_223016.png)
@@ -4510,10 +4510,10 @@ public function create(){
 ```php
 @foreach($students as $student)
     <tr>
-        <td>\{\{ $student->id \}\}</td>
-        <td>\{\{ $student->name \}\}</td>
-        <td>\{\{ $student->age \}\}</td>
-        <td>\{\{ $student->sex($student->sex) \}\}</td>
+        <td>\{{ $student->id \}}</td>
+        <td>\{{ $student->name \}}</td>
+        <td>\{{ $student->age \}}</td>
+        <td>\{{ $student->sex($student->sex) \}}</td>
     </tr> <!--储存到model中的性别是个数字，$student->sex是个数字，$student->sex()才将这个数字转化对应性别为中文汉字-->
 @endforeach
 ```
@@ -4521,7 +4521,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline"> <!--sex()返回一个数组，$ind是10,20,30,$val是未知，男，女-->
-        <input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+        <input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
     </label> <!--最后提交到数据库是，如果是未知，那Student[sex]=10，男：Student[sex]=10等-->
 @endforeach
 ```
@@ -4548,7 +4548,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
 	</label>
 @endforeach
 ```
@@ -4558,14 +4558,14 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}"
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
->&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}"
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
+>&nbsp;\{{ $val \}}
 	</label>
 @endforeach	
 ```
 
-`\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
+`\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
 
 然而，如果控制器仅仅：
 
@@ -4589,7 +4589,7 @@ return view('student.create', [
 这样，在视图：
 
 ```php
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
 ```
 
 先判断`$student->sex`有没有被设置再来做其他事情。
@@ -4597,7 +4597,7 @@ return view('student.create', [
 10. 视图中url传值：
 
 ```php
-\{\{ url('student/update', ['id' => $student->id]) \}\}
+\{{ url('student/update', ['id' => $student->id]) \}}
 ```
 
 # 三、Laravel简单操作技巧
@@ -4986,12 +4986,12 @@ return [
    ```php
    // resources/views/student/upload.blade.php
    <div class="panel-body">
-   	\{\{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}\}
+   	\{{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}}
    	<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
-   		\{\{ csrf_field() \}\}
+   		\{{ csrf_field() \}}
        	<div>
                 <label for="file" class="col-md-4 control-label">请选择文件</label>
-                <div class="col-md-6">		\{\{--name值是source--\}\}
+                <div class="col-md-6">		\{{--name值是source--\}}
                    <input id="file" type="file" class="form-control" name="source" required>
                 </div>
             </div>
@@ -5109,7 +5109,7 @@ class StudentController extends Controller
     <title>标题</title>
 </head>
 <body> <!--$name由控制器注入进来-->
-<h1>Hello \{\{ $name \}\}</h1>
+<h1>Hello \{{ $name \}}</h1>
 </body>
 </html>
 ```
@@ -5686,7 +5686,7 @@ return view('home/index', [
 ```php
 // 模板中获取变量
 // views/home/index.blade.php
-\{\{ $name \}\} \{\{ $age \}\}
+\{{ $name \}} \{{ $age \}}
 ```
 
 ### 5. 模型
@@ -6187,7 +6187,7 @@ public function orm() {
 
 ```php
 // resources/views/layouts.blade.php
-\{\{--@section,展示片段内容--\}\}
+\{{--@section,展示片段内容--\}}
 @section('header')
     头部
 @show
@@ -6196,7 +6196,7 @@ public function orm() {
     侧边栏
 @show
 
-\{\{--@yield，展示字符串内容--\}\}
+\{{--@yield，展示字符串内容--\}}
 @yield('content', '主要内容')
 ```
 
@@ -6204,21 +6204,21 @@ public function orm() {
 
 ```php
 // resources/views/student/child.blade.php
-\{\{--1.继承哪个模板--\}\}
+\{{--1.继承哪个模板--\}}
 @extends('layouts')
 
-\{\{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}\}
+\{{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}}
 @section('header')
     @parent
     header
 @stop
-\{\{--或者--\}\}
-\{\{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}\}
+\{{--或者--\}}
+\{{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}}
 @section('sidebar')
     sidebar
 @stop
 
-\{\{--3.替换父模板中@yield的content内容--\}\}
+\{{--3.替换父模板中@yield的content内容--\}}
 @section('content')
     content
 @stop
@@ -6246,29 +6246,29 @@ class StudentController
 ### 2.基础语法：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.模板中输出PHP变量，该变量由控制器传入--\}\}
-\{\{ $name \}\}
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.模板中输出PHP变量，该变量由控制器传入--\}}
+\{{ $name \}}
 
-\{\{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}\}
-\{\{ time() \}\}
-\{\{ date('Y-m-d H:i:s', time()) \}\}
-\{\{--判断$arr数组中是否有$name,有返回true，没有返回false--\}\}
-\{\{ in_array($name, $arr) ? 'ture': 'false' \}\}
-\{\{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}\}
-\{\{ isset($name) ? $name: 'default' \}\}
-\{\{--或者--\}\}
-\{\{ $name or 'default' \}\}
+\{{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}}
+\{{ time() \}}
+\{{ date('Y-m-d H:i:s', time()) \}}
+\{{--判断$arr数组中是否有$name,有返回true，没有返回false--\}}
+\{{ in_array($name, $arr) ? 'ture': 'false' \}}
+\{{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}}
+\{{ isset($name) ? $name: 'default' \}}
+\{{--或者--\}}
+\{{ $name or 'default' \}}
 
-\{\{--3.原样输出，视图渲染时输出\{\{ $name \}\}--\}\}
-@\{\{ $name \}\}
+\{{--3.原样输出，视图渲染时输出\{{ $name \}}--\}}
+@\{{ $name \}}
 
-\{\{--4.模板注释--\}\}
-\{\{--xxxx--\}\}
+\{{--4.模板注释--\}}
+\{{--xxxx--\}}
 
-\{\{--5.子模板中引入子视图--\}\}
+\{{--5.子模板中引入子视图--\}}
 @include('student.common')
-\{\{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}\}
+\{{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}}
 @include('student.common', ['msg' => 'error'])
 ```
 
@@ -6291,17 +6291,17 @@ class StudentController
 子视图：
 
 ```php
-\{\{--resources/views/student/common.blade.php--\}\}
-\{\{--$msg是个占位符，等着别处传过来值给它赋值--\}\}
-\{\{ $msg \}\}
+\{{--resources/views/student/common.blade.php--\}}
+\{{--$msg是个占位符，等着别处传过来值给它赋值--\}}
+\{{ $msg \}}
 ```
 
 ### 3.模板中流程控制
 
 ```php
-\{\{--resources/vies/student/child.blade.php--\}\}
+\{{--resources/vies/student/child.blade.php--\}}
 
-\{\{--if--\}\}
+\{{--if--\}}
 @if ($name == 'Jim')
     Jim
 @elseif($name == 'a')
@@ -6310,25 +6310,25 @@ class StudentController
     b
 @endif
 
-\{\{--unless,相当于if的取反--\}\}
+\{{--unless,相当于if的取反--\}}
 @unless( $name == 'Jim' )
     output Jim
 @endunless
 
-\{\{--for--\}\}
+\{{--for--\}}
 @for ($i=0; $i<2; $i++)
-    <p>\{\{ $i \}\}</p>
+    <p>\{{ $i \}}</p>
 @endfor
 
-\{\{--foreach,遍历对象列表或者数组--\}\}
-@foreach($students as $student) \{\{--该$student对象列表由控制器传入--\}\}
-    <p>\{\{ $student->name \}\}</p> \{\{--返回$student对象的name属性--\}\}
+\{{--foreach,遍历对象列表或者数组--\}}
+@foreach($students as $student) \{{--该$student对象列表由控制器传入--\}}
+    <p>\{{ $student->name \}}</p> \{{--返回$student对象的name属性--\}}
 @endforeach
 
-\{\{--forelse--\}\}
+\{{--forelse--\}}
 @forelse($students as $student)
-    <p>\{\{ $student->name \}\}</p>
-@empty\{\{--如果对象列表为空--\}\}
+    <p>\{{ $student->name \}}</p>
+@empty\{{--如果对象列表为空--\}}
     <p>null</p>
 @endforelse
 ```
@@ -6367,13 +6367,13 @@ Route::any('urlTest', ['as' => 'urlAlias', 'uses' => 'StudentController@urlTest'
 模板中生成url：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.指定的路由名字--\}\}
-<a href="\{\{ url('urlTest') \}\}">This is url.</a>
-\{\{--2.控制器+方法名--\}\}
-<a href="\{\{ action('StudentController@urlTest') \}\}">This is url.</a>
-\{\{--3.路由的别名--\}\}
-<a href="\{\{ route('urlAlias') \}\}">This is url.</a>
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.指定的路由名字--\}}
+<a href="\{{ url('urlTest') \}}">This is url.</a>
+\{{--2.控制器+方法名--\}}
+<a href="\{{ action('StudentController@urlTest') \}}">This is url.</a>
+\{{--3.路由的别名--\}}
+<a href="\{{ route('urlAlias') \}}">This is url.</a>
 ```
 
 # 二、laravel表单
@@ -6794,10 +6794,10 @@ class Activity
 
 ## 5.表单案例笔记
 
-1.静态资源路径：`\{\{ asset() \}\}`
+1.静态资源路径：`\{{ asset() \}}`
 
 ```php
-    <link href="\{\{ asset('static/css/bootstrap.min.css') \}\}" rel="stylesheet">
+    <link href="\{{ asset('static/css/bootstrap.min.css') \}}" rel="stylesheet">
 ```
 
 这个路径是相对于public文件夹下的，也就是文件位置：![2018-08-07_134524](/assets/images/laravel-develop-study/2018-08-07_134524.png)
@@ -6828,13 +6828,13 @@ class StudentController extends Controller
 }
 ```
 
-	在需要用到分页的视图里，直接` \{\{ $students->render() \}\}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
+	在需要用到分页的视图里，直接` \{{ $students->render() \}}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
 
 ```php
 <!--student.index视图的分页内容-->
 	<!--分页-->
     <div class="pull-right">
-        \{\{ $students->render() \}\}
+        \{{ $students->render() \}}
     </div>
 ```
 
@@ -6842,8 +6842,8 @@ class StudentController extends Controller
 
 ```php
 <ul class="nav nav-pills nav-stacked">
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}\}"><a href="\{\{ url('student/index') \}\}">学生列表</a></li>
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}\}"><a href="\{\{ url('student/create') \}\}">新增学生</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}}"><a href="\{{ url('student/index') \}}">学生列表</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}}"><a href="\{{ url('student/create') \}}">新增学生</a></li>
 </ul>
 ```
 
@@ -6854,7 +6854,7 @@ class StudentController extends Controller
 * 提交到`save()`:
 
 ```php
-<form action="\{\{ url('student/save') \}\}" method="POST"> 
+<form action="\{{ url('student/save') \}}" method="POST"> 
     <!-- 1.设置action路径为'student/save',即提交到student/save -->
 
     <label for="inputName" >姓名：</label>
@@ -6966,7 +6966,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>成功!!</strong>\{\{ Session::get('success') \}\}！
+    <strong>成功!!</strong>\{{ Session::get('success') \}}！
 </div>
 @endif
 @if (Session::has('error'))
@@ -6975,7 +6975,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>失败!!</strong>\{\{ Session::get('error') \}\}！
+    <strong>失败!!</strong>\{{ Session::get('error') \}}！
 </div>
 @endif
 ```
@@ -7011,14 +7011,14 @@ Route::group(['middleware' => ['web']], function () {
 });
 ```
 
-中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{\{ csrf_field() \}\}`。
+中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{{ csrf_field() \}}`。
 
 ```php
 <!--create.blade.php-->
 @section('content')
-<form action="\{\{ url('student/save') \}\}" method="POST">
+<form action="\{{ url('student/save') \}}" method="POST">
 
-    \{\{ csrf_field() \}\} <!--防止xxs攻击-->
+    \{{ csrf_field() \}} <!--防止xxs攻击-->
 
     <label for="inputName" >姓名：</label>
         <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
@@ -7099,7 +7099,7 @@ $this->validate($request, [
     <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error) // 将所有的错误都输出
-            <li>\{\{ $error \}\}</li>
+            <li>\{{ $error \}}</li>
             @endforeach
         </ul>
     </div>
@@ -7113,8 +7113,8 @@ $this->validate($request, [
 
     @include('common.validator') <!--需要输出验证信息的地方-->
 
-    <form action="\{\{ url('student/save') \}\}" method="POST">
-        \{\{ csrf_field() \}\}
+    <form action="\{{ url('student/save') \}}" method="POST">
+        \{{ csrf_field() \}}
         <label for="inputName" >姓名：</label>
             <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
 
@@ -7162,7 +7162,7 @@ public function create(Request $request){
 }
 ```
 
-在视图中调用指定的错误信息：`\{\{ $errors->first('Student.name') \}\}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
+在视图中调用指定的错误信息：`\{{ $errors->first('Student.name') \}}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
 
 7. 数据保持
 
@@ -7170,10 +7170,10 @@ public function create(Request $request){
 
 ![2018-08-07_222555](/assets/images/laravel-develop-study/2018-08-07_222555.png)
 
-`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{\{ old('Student')['name'] \}\}"`即可：
+`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{{ old('Student')['name'] \}}"`即可：
 
 ```php
-<input type="text" value="\{\{ old('Student')['name'] \}\}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
+<input type="text" value="\{{ old('Student')['name'] \}}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
 ```
 
 这样子，在提交表单而发生错误后，重定向到原先的表单填写页面时，它会自动补全在`input`之前填过的信息：![2018-08-07_223016](/assets/images/laravel-develop-study/2018-08-07_223016.png)
@@ -7253,10 +7253,10 @@ public function create(){
 ```php
 @foreach($students as $student)
     <tr>
-        <td>\{\{ $student->id \}\}</td>
-        <td>\{\{ $student->name \}\}</td>
-        <td>\{\{ $student->age \}\}</td>
-        <td>\{\{ $student->sex($student->sex) \}\}</td>
+        <td>\{{ $student->id \}}</td>
+        <td>\{{ $student->name \}}</td>
+        <td>\{{ $student->age \}}</td>
+        <td>\{{ $student->sex($student->sex) \}}</td>
     </tr> <!--储存到model中的性别是个数字，$student->sex是个数字，$student->sex()才将这个数字转化对应性别为中文汉字-->
 @endforeach
 ```
@@ -7264,7 +7264,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline"> <!--sex()返回一个数组，$ind是10,20,30,$val是未知，男，女-->
-        <input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+        <input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
     </label> <!--最后提交到数据库是，如果是未知，那Student[sex]=10，男：Student[sex]=10等-->
 @endforeach
 ```
@@ -7291,7 +7291,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
 	</label>
 @endforeach
 ```
@@ -7301,14 +7301,14 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}"
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
->&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}"
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
+>&nbsp;\{{ $val \}}
 	</label>
 @endforeach	
 ```
 
-`\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
+`\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
 
 然而，如果控制器仅仅：
 
@@ -7332,7 +7332,7 @@ return view('student.create', [
 这样，在视图：
 
 ```php
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
 ```
 
 先判断`$student->sex`有没有被设置再来做其他事情。
@@ -7340,7 +7340,7 @@ return view('student.create', [
 10. 视图中url传值：
 
 ```php
-\{\{ url('student/update', ['id' => $student->id]) \}\}
+\{{ url('student/update', ['id' => $student->id]) \}}
 ```
 
 # 三、Laravel简单操作技巧
@@ -7729,12 +7729,12 @@ return [
    ```php
    // resources/views/student/upload.blade.php
    <div class="panel-body">
-   	\{\{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}\}
+   	\{{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}}
    	<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
-   		\{\{ csrf_field() \}\}
+   		\{{ csrf_field() \}}
        	<div>
                 <label for="file" class="col-md-4 control-label">请选择文件</label>
-                <div class="col-md-6">		\{\{--name值是source--\}\}
+                <div class="col-md-6">		\{{--name值是source--\}}
                    <input id="file" type="file" class="form-control" name="source" required>
                 </div>
             </div>
@@ -7852,7 +7852,7 @@ class StudentController extends Controller
     <title>标题</title>
 </head>
 <body> <!--$name由控制器注入进来-->
-<h1>Hello \{\{ $name \}\}</h1>
+<h1>Hello \{{ $name \}}</h1>
 </body>
 </html>
 ```
@@ -8429,7 +8429,7 @@ return view('home/index', [
 ```php
 // 模板中获取变量
 // views/home/index.blade.php
-\{\{ $name \}\} \{\{ $age \}\}
+\{{ $name \}} \{{ $age \}}
 ```
 
 ### 5. 模型
@@ -8930,7 +8930,7 @@ public function orm() {
 
 ```php
 // resources/views/layouts.blade.php
-\{\{--@section,展示片段内容--\}\}
+\{{--@section,展示片段内容--\}}
 @section('header')
     头部
 @show
@@ -8939,7 +8939,7 @@ public function orm() {
     侧边栏
 @show
 
-\{\{--@yield，展示字符串内容--\}\}
+\{{--@yield，展示字符串内容--\}}
 @yield('content', '主要内容')
 ```
 
@@ -8947,21 +8947,21 @@ public function orm() {
 
 ```php
 // resources/views/student/child.blade.php
-\{\{--1.继承哪个模板--\}\}
+\{{--1.继承哪个模板--\}}
 @extends('layouts')
 
-\{\{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}\}
+\{{--2.替换父模板中@section的header内容，输出父模板对应地方的父内容--\}}
 @section('header')
     @parent
     header
 @stop
-\{\{--或者--\}\}
-\{\{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}\}
+\{{--或者--\}}
+\{{--重写父模板中@section的sidebar内容，不会输出父模板对应地方的父内容--\}}
 @section('sidebar')
     sidebar
 @stop
 
-\{\{--3.替换父模板中@yield的content内容--\}\}
+\{{--3.替换父模板中@yield的content内容--\}}
 @section('content')
     content
 @stop
@@ -8989,29 +8989,29 @@ class StudentController
 ### 2.基础语法：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.模板中输出PHP变量，该变量由控制器传入--\}\}
-\{\{ $name \}\}
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.模板中输出PHP变量，该变量由控制器传入--\}}
+\{{ $name \}}
 
-\{\{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}\}
-\{\{ time() \}\}
-\{\{ date('Y-m-d H:i:s', time()) \}\}
-\{\{--判断$arr数组中是否有$name,有返回true，没有返回false--\}\}
-\{\{ in_array($name, $arr) ? 'ture': 'false' \}\}
-\{\{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}\}
-\{\{ isset($name) ? $name: 'default' \}\}
-\{\{--或者--\}\}
-\{\{ $name or 'default' \}\}
+\{{--2.模板中调用PHP代码,$name和$arr两个变量都由控制器中传进来--\}}
+\{{ time() \}}
+\{{ date('Y-m-d H:i:s', time()) \}}
+\{{--判断$arr数组中是否有$name,有返回true，没有返回false--\}}
+\{{ in_array($name, $arr) ? 'ture': 'false' \}}
+\{{--判断$name是否存在,有返回$name值，没有返回字符串'default'--\}}
+\{{ isset($name) ? $name: 'default' \}}
+\{{--或者--\}}
+\{{ $name or 'default' \}}
 
-\{\{--3.原样输出，视图渲染时输出\{\{ $name \}\}--\}\}
-@\{\{ $name \}\}
+\{{--3.原样输出，视图渲染时输出\{{ $name \}}--\}}
+@\{{ $name \}}
 
-\{\{--4.模板注释--\}\}
-\{\{--xxxx--\}\}
+\{{--4.模板注释--\}}
+\{{--xxxx--\}}
 
-\{\{--5.子模板中引入子视图--\}\}
+\{{--5.子模板中引入子视图--\}}
 @include('student.common')
-\{\{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}\}
+\{{--子视图中有占位符$msg,在这里将msg赋值并传给子视图--\}}
 @include('student.common', ['msg' => 'error'])
 ```
 
@@ -9034,17 +9034,17 @@ class StudentController
 子视图：
 
 ```php
-\{\{--resources/views/student/common.blade.php--\}\}
-\{\{--$msg是个占位符，等着别处传过来值给它赋值--\}\}
-\{\{ $msg \}\}
+\{{--resources/views/student/common.blade.php--\}}
+\{{--$msg是个占位符，等着别处传过来值给它赋值--\}}
+\{{ $msg \}}
 ```
 
 ### 3.模板中流程控制
 
 ```php
-\{\{--resources/vies/student/child.blade.php--\}\}
+\{{--resources/vies/student/child.blade.php--\}}
 
-\{\{--if--\}\}
+\{{--if--\}}
 @if ($name == 'Jim')
     Jim
 @elseif($name == 'a')
@@ -9053,25 +9053,25 @@ class StudentController
     b
 @endif
 
-\{\{--unless,相当于if的取反--\}\}
+\{{--unless,相当于if的取反--\}}
 @unless( $name == 'Jim' )
     output Jim
 @endunless
 
-\{\{--for--\}\}
+\{{--for--\}}
 @for ($i=0; $i<2; $i++)
-    <p>\{\{ $i \}\}</p>
+    <p>\{{ $i \}}</p>
 @endfor
 
-\{\{--foreach,遍历对象列表或者数组--\}\}
-@foreach($students as $student) \{\{--该$student对象列表由控制器传入--\}\}
-    <p>\{\{ $student->name \}\}</p> \{\{--返回$student对象的name属性--\}\}
+\{{--foreach,遍历对象列表或者数组--\}}
+@foreach($students as $student) \{{--该$student对象列表由控制器传入--\}}
+    <p>\{{ $student->name \}}</p> \{{--返回$student对象的name属性--\}}
 @endforeach
 
-\{\{--forelse--\}\}
+\{{--forelse--\}}
 @forelse($students as $student)
-    <p>\{\{ $student->name \}\}</p>
-@empty\{\{--如果对象列表为空--\}\}
+    <p>\{{ $student->name \}}</p>
+@empty\{{--如果对象列表为空--\}}
     <p>null</p>
 @endforelse
 ```
@@ -9110,13 +9110,13 @@ Route::any('urlTest', ['as' => 'urlAlias', 'uses' => 'StudentController@urlTest'
 模板中生成url：
 
 ```php
-\{\{--resources/views/student/child.blade.php--\}\}
-\{\{--1.指定的路由名字--\}\}
-<a href="\{\{ url('urlTest') \}\}">This is url.</a>
-\{\{--2.控制器+方法名--\}\}
-<a href="\{\{ action('StudentController@urlTest') \}\}">This is url.</a>
-\{\{--3.路由的别名--\}\}
-<a href="\{\{ route('urlAlias') \}\}">This is url.</a>
+\{{--resources/views/student/child.blade.php--\}}
+\{{--1.指定的路由名字--\}}
+<a href="\{{ url('urlTest') \}}">This is url.</a>
+\{{--2.控制器+方法名--\}}
+<a href="\{{ action('StudentController@urlTest') \}}">This is url.</a>
+\{{--3.路由的别名--\}}
+<a href="\{{ route('urlAlias') \}}">This is url.</a>
 ```
 
 # 二、laravel表单
@@ -9537,10 +9537,10 @@ class Activity
 
 ## 5.表单案例笔记
 
-1.静态资源路径：`\{\{ asset() \}\}`
+1.静态资源路径：`\{{ asset() \}}`
 
 ```php
-    <link href="\{\{ asset('static/css/bootstrap.min.css') \}\}" rel="stylesheet">
+    <link href="\{{ asset('static/css/bootstrap.min.css') \}}" rel="stylesheet">
 ```
 
 这个路径是相对于public文件夹下的，也就是文件位置：![2018-08-07_134524](/assets/images/laravel-develop-study/2018-08-07_134524.png)
@@ -9571,13 +9571,13 @@ class StudentController extends Controller
 }
 ```
 
-	在需要用到分页的视图里，直接` \{\{ $students->render() \}\}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
+	在需要用到分页的视图里，直接` \{{ $students->render() \}}`就行了，这条语句会自动生成含有`ul`和`li`的分页信息的。
 
 ```php
 <!--student.index视图的分页内容-->
 	<!--分页-->
     <div class="pull-right">
-        \{\{ $students->render() \}\}
+        \{{ $students->render() \}}
     </div>
 ```
 
@@ -9585,8 +9585,8 @@ class StudentController extends Controller
 
 ```php
 <ul class="nav nav-pills nav-stacked">
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}\}"><a href="\{\{ url('student/index') \}\}">学生列表</a></li>
-<li role="presentation" class="\{\{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}\}"><a href="\{\{ url('student/create') \}\}">新增学生</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/index' ? 'active' : '' \}}"><a href="\{{ url('student/index') \}}">学生列表</a></li>
+<li role="presentation" class="\{{ Request::getPathInfo() == '/student/create' ? 'active' : '' \}}"><a href="\{{ url('student/create') \}}">新增学生</a></li>
 </ul>
 ```
 
@@ -9597,7 +9597,7 @@ class StudentController extends Controller
 * 提交到`save()`:
 
 ```php
-<form action="\{\{ url('student/save') \}\}" method="POST"> 
+<form action="\{{ url('student/save') \}}" method="POST"> 
     <!-- 1.设置action路径为'student/save',即提交到student/save -->
 
     <label for="inputName" >姓名：</label>
@@ -9709,7 +9709,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>成功!!</strong>\{\{ Session::get('success') \}\}！
+    <strong>成功!!</strong>\{{ Session::get('success') \}}！
 </div>
 @endif
 @if (Session::has('error'))
@@ -9718,7 +9718,7 @@ public function create(Request $request){
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>失败!!</strong>\{\{ Session::get('error') \}\}！
+    <strong>失败!!</strong>\{{ Session::get('error') \}}！
 </div>
 @endif
 ```
@@ -9754,14 +9754,14 @@ Route::group(['middleware' => ['web']], function () {
 });
 ```
 
-中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{\{ csrf_field() \}\}`。
+中间件`web`还能防止xxs攻击，所以，如果路由里有表单提交的话，一定要在表单视图中加入`\{{ csrf_field() \}}`。
 
 ```php
 <!--create.blade.php-->
 @section('content')
-<form action="\{\{ url('student/save') \}\}" method="POST">
+<form action="\{{ url('student/save') \}}" method="POST">
 
-    \{\{ csrf_field() \}\} <!--防止xxs攻击-->
+    \{{ csrf_field() \}} <!--防止xxs攻击-->
 
     <label for="inputName" >姓名：</label>
         <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
@@ -9842,7 +9842,7 @@ $this->validate($request, [
     <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error) // 将所有的错误都输出
-            <li>\{\{ $error \}\}</li>
+            <li>\{{ $error \}}</li>
             @endforeach
         </ul>
     </div>
@@ -9856,8 +9856,8 @@ $this->validate($request, [
 
     @include('common.validator') <!--需要输出验证信息的地方-->
 
-    <form action="\{\{ url('student/save') \}\}" method="POST">
-        \{\{ csrf_field() \}\}
+    <form action="\{{ url('student/save') \}}" method="POST">
+        \{{ csrf_field() \}}
         <label for="inputName" >姓名：</label>
             <input type="text" name="Student[name]" id="inputName" placeholder="请输入姓名"> 
 
@@ -9905,7 +9905,7 @@ public function create(Request $request){
 }
 ```
 
-在视图中调用指定的错误信息：`\{\{ $errors->first('Student.name') \}\}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
+在视图中调用指定的错误信息：`\{{ $errors->first('Student.name') \}}`,如果有自定义错误内容`姓名 为必选项`，则输出的是错误对应（`Student.name`）的自定义内容。
 
 7. 数据保持
 
@@ -9913,10 +9913,10 @@ public function create(Request $request){
 
 ![2018-08-07_222555](/assets/images/laravel-develop-study/2018-08-07_222555.png)
 
-`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{\{ old('Student')['name'] \}\}"`即可：
+`withInput()`自动默认将`$request`作为参数传进去，然后再在需要的`input`组件添加`value="\{{ old('Student')['name'] \}}"`即可：
 
 ```php
-<input type="text" value="\{\{ old('Student')['name'] \}\}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
+<input type="text" value="\{{ old('Student')['name'] \}}" name="Student[name]" class="form-control" id="inputName" placeholder="请输入姓名">
 ```
 
 这样子，在提交表单而发生错误后，重定向到原先的表单填写页面时，它会自动补全在`input`之前填过的信息：![2018-08-07_223016](/assets/images/laravel-develop-study/2018-08-07_223016.png)
@@ -9996,10 +9996,10 @@ public function create(){
 ```php
 @foreach($students as $student)
     <tr>
-        <td>\{\{ $student->id \}\}</td>
-        <td>\{\{ $student->name \}\}</td>
-        <td>\{\{ $student->age \}\}</td>
-        <td>\{\{ $student->sex($student->sex) \}\}</td>
+        <td>\{{ $student->id \}}</td>
+        <td>\{{ $student->name \}}</td>
+        <td>\{{ $student->age \}}</td>
+        <td>\{{ $student->sex($student->sex) \}}</td>
     </tr> <!--储存到model中的性别是个数字，$student->sex是个数字，$student->sex()才将这个数字转化对应性别为中文汉字-->
 @endforeach
 ```
@@ -10007,7 +10007,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline"> <!--sex()返回一个数组，$ind是10,20,30,$val是未知，男，女-->
-        <input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+        <input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
     </label> <!--最后提交到数据库是，如果是未知，那Student[sex]=10，男：Student[sex]=10等-->
 @endforeach
 ```
@@ -10034,7 +10034,7 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}">&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}">&nbsp;\{{ $val \}}
 	</label>
 @endforeach
 ```
@@ -10044,14 +10044,14 @@ public function create(){
 ```php
 @foreach($student->sex() as $ind=>$val)
     <label class="radio-inline">
-    	<input type="radio" name="Student[sex]" value="\{\{ $ind \}\}"
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
->&nbsp;\{\{ $val \}\}
+    	<input type="radio" name="Student[sex]" value="\{{ $ind \}}"
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
+>&nbsp;\{{ $val \}}
 	</label>
 @endforeach	
 ```
 
-`\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
+`\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}`的意思是，如果控制器注入了一个`Student`实例，那么判断这个实例的`sex`有没有被设置，有的话，就判断`$student->sex`这个值和`$ind`相不相等，相等的话，那就这个`input`默认被选中。相当于，能指定一个`input`默认被选中。
 
 然而，如果控制器仅仅：
 
@@ -10075,7 +10075,7 @@ return view('student.create', [
 这样，在视图：
 
 ```php
-\{\{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}\}
+\{{ isset($student->sex) && ($student->sex == $ind) ? 'checked' : '' \}}
 ```
 
 先判断`$student->sex`有没有被设置再来做其他事情。
@@ -10083,7 +10083,7 @@ return view('student.create', [
 10. 视图中url传值：
 
 ```php
-\{\{ url('student/update', ['id' => $student->id]) \}\}
+\{{ url('student/update', ['id' => $student->id]) \}}
 ```
 
 # 三、Laravel简单操作技巧
@@ -10472,12 +10472,12 @@ return [
    ```php
    // resources/views/student/upload.blade.php
    <div class="panel-body">
-   	\{\{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}\}
+   	\{{--enctype="multipart/form-data"必须加这个属性，表单才可以使用文件上传功能--\}}
    	<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
-   		\{\{ csrf_field() \}\}
+   		\{{ csrf_field() \}}
        	<div>
                 <label for="file" class="col-md-4 control-label">请选择文件</label>
-                <div class="col-md-6">		\{\{--name值是source--\}\}
+                <div class="col-md-6">		\{{--name值是source--\}}
                    <input id="file" type="file" class="form-control" name="source" required>
                 </div>
             </div>
@@ -10595,7 +10595,7 @@ class StudentController extends Controller
     <title>标题</title>
 </head>
 <body> <!--$name由控制器注入进来-->
-<h1>Hello \{\{ $name \}\}</h1>
+<h1>Hello \{{ $name \}}</h1>
 </body>
 </html>
 ```
