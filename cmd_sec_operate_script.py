@@ -18,13 +18,13 @@ class PopUpBox:
         self.root.bind("<Key>", self._edit)
 
     def _init_root(self):
-        root = tkinter.Tk(className='提交附加信息框')
+        root = tkinter.Tk(className='这是提交附加信息框,按i输入信息,默认提交信息update')
         root.geometry('500x100')
         return root
 
     def _init_var(self):
         var = tkinter.StringVar()
-        var.set('按i输入信息,默认提交信息update')
+        var.set('update')
         return var
 
     def _init_entry(self):
