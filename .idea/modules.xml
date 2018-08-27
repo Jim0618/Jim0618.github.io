@@ -4,7 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Jim0618.github.io.iml" filepath="$PROJECT_DIR$/.idea/Jim0618.github.io.iml" />
       <module fileurl="file://$PROJECT_DIR$/../temp/.idea/temp.iml" filepath="$PROJECT_DIR$/../temp/.idea/temp.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$USER_HOME$/Desktop/test/.idea/test.iml" filepath="$USER_HOME$/Desktop/test/.idea/test.iml" />
+=======
+>>>>>>> a9f42e39a60257959ac6fcf04cb0913a046f1d4d
     </modules>
   </component>
 </project>
