@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a0098833-4ca4-4332-b0da-4257e799156e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/!!REMIND" beforeDir="false" afterPath="$PROJECT_DIR$/!!REMIND" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Jim0618.github.io.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Jim0618.github.io.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a0098833-4ca4-4332-b0da-4257e799156e" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Desktop/test/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            <state relative-caret-position="30">
+              <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -34,12 +29,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018-08-25-laravel-study-note.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="2018-08-25-laravel-study-note.md" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/Desktop/test/2018-08-25-laravel-study-note.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="59">
-                <caret line="708" column="10" selection-start-line="708" selection-start-column="10" selection-end-line="708" selection-end-column="10" />
+              <first_editor relative-caret-position="269">
+                <caret line="205" column="9" lean-forward="true" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
               </first_editor>
               <second_editor />
             </state>
@@ -59,6 +54,8 @@
     <findStrings>
       <find>模板带</find>
       <find>{{</find>
+      <find>{</find>
+      <find>\{</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -81,7 +78,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="396" />
     <option name="y" value="12" />
     <option name="width" value="1472" />
@@ -252,15 +249,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="396" y="12" width="1472" height="1087" extended-state="0" />
+    <frame x="396" y="12" width="1472" height="1087" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22942817" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22942817" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917964" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3186583" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3186583" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32914045" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -498,16 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/test/2018-08-25-laravel-study-note.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="59">
-            <caret line="708" column="10" selection-start-line="708" selection-start-column="10" selection-end-line="708" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/test/temp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -517,8 +504,18 @@
     </entry>
     <entry file="file://$USER_HOME$/Desktop/test/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        <state relative-caret-position="30">
+          <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/test/2018-08-25-laravel-study-note.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="269">
+            <caret line="205" column="9" lean-forward="true" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
