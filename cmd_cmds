@@ -1,6 +1,3 @@
-git add .gitignore
-git commit -m "update .gitignore"
 git add --all
 git commit -m ""
-
 git push
